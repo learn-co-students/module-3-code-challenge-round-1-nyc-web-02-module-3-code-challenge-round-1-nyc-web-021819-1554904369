@@ -6,11 +6,11 @@
 
 You will be building out an application that allows a user to purchase movie tickets.
 
-* As a user, when the page loads I should see a list of movie showings fetched from a remote API.
+<!-- * As a user, when the page loads I should see a list of movie showings fetched from a remote API. -->
 
-* As a user, clicking on the 'Buy Ticket' button should purchase a ticket and decrement the remaining tickets by one. This information should be persisted in the remote API.
+<!-- * As a user, clicking on the 'Buy Ticket' button should purchase a ticket and decrement the remaining tickets by one. This information should be persisted in the remote API. -->
 
-* As a user I should not be able to purchase a ticket for a sold out showing. The 'Buy Ticket' button should be disabled on sold out showings, and the text should change to "sold out". 
+<!-- * As a user I should not be able to purchase a ticket for a sold out showing. The 'Buy Ticket' button should be disabled on sold out showings, and the text should change to "sold out". -->
 
 ## Implementation Notes
 
@@ -189,7 +189,7 @@ Example Responses:
 
 #### Important Note
 
-**Once this response is received you need to decrease the number of remaining tickets displayed on the DOM.** 
+**Once this response is received you need to decrease the number of remaining tickets displayed on the DOM.**
 
 ### Styling
 
