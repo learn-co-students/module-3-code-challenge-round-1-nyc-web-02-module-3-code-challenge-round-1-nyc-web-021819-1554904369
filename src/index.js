@@ -15,7 +15,7 @@ document.addEventListener('click', clickHandler)
 
 //the following functions render the page
 function fetchFilms(){
-  fetch(`https://evening-plateau-54365.herokuapp.com/theatres/${47}`)
+  fetch(`https://evening-plateau-54365.herokuapp.com/theatres/${theatreId}`)
   .then(function(response) {
     return response.json();
   })
