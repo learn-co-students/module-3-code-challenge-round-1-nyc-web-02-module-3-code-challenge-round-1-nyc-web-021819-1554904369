@@ -1,5 +1,5 @@
 const theatreId = 38;
-const baseURL = "https://evening-plateau-54365.herokuapp.com/theatres/38"
+const baseURL = "https://evening-plateau-54365.herokuapp.com"
 let allMovies
 let showings
 
@@ -74,7 +74,7 @@ function addMoviesToDOM(){
 
 // gets all movies from db
 function getAllMovies() {
-    fetch(baseURL)
+    fetch(`${baseURL}/theatres/${theatreId}`)
     .then(res => res.json())
     .then(theater => {
         allMovies = theater.showings
@@ -84,7 +84,7 @@ function getAllMovies() {
 
 // increases ticket sold by 1
 function purchaseTicket(body){
-    return fetch('https://evening-plateau-54365.herokuapp.com/tickets', {
+    return fetch(`${baseURL}/tickets`, {
         method: 'POST',
         body: JSON.stringify(body),
         headers:{
