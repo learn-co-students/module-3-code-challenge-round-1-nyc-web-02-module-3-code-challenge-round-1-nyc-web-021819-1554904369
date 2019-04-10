@@ -32,7 +32,7 @@ function buyTicket() {
 
 // generates html for a movie
 function movieToHTML(movie) {
-    let remaining_tickets = movie.capacity - movie.tickets_sold
+    const remaining_tickets = movie.capacity - movie.tickets_sold
     let extra = `<div data-action="buy" data-showing-id=${movie.id} class="ui blue button">Buy Ticket</div>`
 
     if (remaining_tickets === 0) {
@@ -65,12 +65,12 @@ function movieToHTML(movie) {
 // adds movies to the dom
 function addMoviesToDOM() {
     showings.innerHTML = ''
-    allMovies.forEach(function(movie){
+    allMovies.forEach((movie) => {
         showings.innerHTML += movieToHTML(movie)
     })
 }
 
-// fetches
+// Fetches
 
 // gets all movies from db
 function getAllMovies() {
