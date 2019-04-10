@@ -45,6 +45,8 @@ function renderShowing(showing){
     tickets_sold: showing.tickets_sold
   }
   const div = document.createElement("div")
+  const disabledClass = (film.capacity - film.tickets_sold > 0) ? "" : "disabled"
+  const buttonText = disabledClass ? "Sold Out": "Buy Ticket"
   div.classList.add("card")
   div.setAttribute('data-id', showing.id)
   div.innerHTML =
@@ -61,12 +63,10 @@ function renderShowing(showing){
         </span>
         ${film.capacity - film.tickets_sold} remaining tickets
       </div>
-    </div>`
-  if (film.capacity - film.tickets_sold > 0){
-    div.innerHTML += `
+    </div>
     <div class="extra content">
-        <div class="ui blue button">Buy Ticket</div>
-    </div>`}
+        <div class="ui blue ${disabledClass} button">${buttonText}</div>
+    </div>`
   showingDiv.appendChild(div)
 }
 
