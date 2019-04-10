@@ -6,11 +6,11 @@
 
 You will be building out an application that allows a user to purchase movie tickets.
 
-* As a user, when the page loads I should see a list of movie showings fetched from a remote API.
+<!-- * As a user, when the page loads I should see a list of movie showings fetched from a remote API. -->
 
-* As a user, clicking on the 'Buy Ticket' button should purchase a ticket and decrement the remaining tickets by one. This information should be persisted in the remote API.
+<!-- * As a user, clicking on the 'Buy Ticket' button should purchase a ticket and decrement the remaining tickets by one. This information should be persisted in the remote API. -->
 
-* As a user I should not be able to purchase a ticket for a sold out showing. The 'Buy Ticket' button should be disabled on sold out showings, and the text should change to "sold out". 
+<!-- * As a user I should not be able to purchase a ticket for a sold out showing. The 'Buy Ticket' button should be disabled on sold out showings, and the text should change to "sold out". -->
 
 ## Implementation Notes
 
@@ -22,13 +22,13 @@ There are two endpoints you will use, one to fetch all of the data associated wi
 
 When you visit `https://evening-plateau-54365.herokuapp.com/` in your browser, you'll be assigned a **unique id**
 
-**Before you do anything else, change the variable `theatreId` in your index.js file to your assigned id.**
+<!-- **Before you do anything else, change the variable `theatreId` in your index.js file to your assigned id.** -->
 
 #### GET `/theatres/:id`
 
-Use your assigned id to get the data for all of the showings at your assigned theatre.
+<!-- Use your assigned id to get the data for all of the showings at your assigned theatre. -->
 
-GET `https://evening-plateau-54365.herokuapp.com/theatres/:id`
+<!-- GET `https://evening-plateau-54365.herokuapp.com/theatres/:id` -->
 
 Example response:
 ```json
@@ -152,7 +152,7 @@ Example response:
 
 A theatre has many showings.
 
-The number of tickets remaining for a showing can be determined by subtracting the current `tickets_sold` from the total `capacity` of the showing.
+<!-- The number of tickets remaining for a showing can be determined by subtracting the current `tickets_sold` from the total `capacity` of the showing. -->
 
 
 #### POST `/tickets`
@@ -189,13 +189,13 @@ Example Responses:
 
 #### Important Note
 
-**Once this response is received you need to decrease the number of remaining tickets displayed on the DOM.** 
+**Once this response is received you need to decrease the number of remaining tickets displayed on the DOM.**
 
 ### Styling
 
 [Semantic Ui](https://semantic-ui.com/elements/list.html) is loaded into this project via a `link` tag in the `head` of the html.
 
-The cards that represent a movie showing should be appended to the div with the class of  `showings`.  Each card should have the following html
+<!-- The cards that represent a movie showing should be appended to the div with the class of  `showings`.  Each card should have the following html -->
 
 ```html
 <div class="card">
