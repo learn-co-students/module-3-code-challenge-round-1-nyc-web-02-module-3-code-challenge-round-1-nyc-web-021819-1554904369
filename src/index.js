@@ -13,7 +13,6 @@ function domLoadFunctions(){
 // calls a below click handler function which determines what to do with e
 document.addEventListener('click', clickHandler)
 
-
 //the following functions render the page
 function fetchFilms(){
   fetch(`https://evening-plateau-54365.herokuapp.com/theatres/${47}`)
@@ -25,6 +24,8 @@ function fetchFilms(){
   });
 }
 
+// takes the fetch response, wipes the previous showings list from the dom
+// and then calls for each on each showing to render the showings
 function renderFilms(response){
   // console.log("response", response)
   // console.log("showings", response.showings)
@@ -72,7 +73,7 @@ function renderShowing(showing){
 
 function clickHandler(e){
   // this if is to determine whether the click is being used to buy a new ticket
-  if (e.target.className === "ui blue button"){
+  if (e.target.className === "ui blue  button"){
     // pulls id from parent
     const id = e.target.parentNode.parentNode.dataset.id
     // use that id to buy a ticket
@@ -82,13 +83,8 @@ function clickHandler(e){
 
 function buyTicket(id){
   fetch("https://evening-plateau-54365.herokuapp.com/tickets", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        // mode: "cors", // no-cors, cors, *same-origin
-        // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        // credentials: "same-origin", // include, *same-origin, omit
+        method: "POST",
         headers: {
-            // "Content-Type": "application/json",
-            // "Content-Type": "application/x-www-form-urlencoded",
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
