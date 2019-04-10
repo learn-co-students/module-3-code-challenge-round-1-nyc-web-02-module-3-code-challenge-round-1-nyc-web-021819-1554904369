@@ -46,8 +46,8 @@ function renderShowing(showing){
     tickets_sold: showing.tickets_sold
   }
   const div = document.createElement("div")
-  const disabledClass = (film.capacity - film.tickets_sold > 0) ? "" : "disabled"
-  const buttonText = disabledClass ? "Sold Out": "Buy Ticket"
+  const disabledClass = (film.capacity - film.tickets_sold > 0) ? "weGoodToBuyFam" : "disabled"
+  const buttonText = (disabledClass==="disabled") ? "Sold Out": "Buy Ticket"
   div.classList.add("card")
   div.setAttribute('data-id', showing.id)
   div.innerHTML =
@@ -73,7 +73,8 @@ function renderShowing(showing){
 
 function clickHandler(e){
   // this if is to determine whether the click is being used to buy a new ticket
-  if (e.target.className === "ui blue  button"){
+  // this class only exists if we good to buy fam
+  if (e.target.className === "ui blue weGoodToBuyFam button"){
     // pulls id from parent
     const id = e.target.parentNode.parentNode.dataset.id
     // use that id to buy a ticket
@@ -81,6 +82,7 @@ function clickHandler(e){
   }
 }
 
+// send the fetch to create an new ticket, render all the films again
 function buyTicket(id){
   fetch("https://evening-plateau-54365.herokuapp.com/tickets", {
         method: "POST",
