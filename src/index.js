@@ -7,6 +7,7 @@ const showingDiv = document.querySelector(".showings")
 document.addEventListener('DOMContentLoaded', domLoadFunctions)
 function domLoadFunctions(){
   fetchFilms()
+  cageifyButton()
 }
 
 // Event Listeners
@@ -74,6 +75,9 @@ function renderShowing(showing){
 function clickHandler(e){
   // this if is to determine whether the click is being used to buy a new ticket
   // this class only exists if we good to buy fam
+  if (e.target.className === "ui red cage button"){
+    cageify()
+  }
   if (e.target.className === "ui blue weGoodToBuyFam button"){
     // pulls id from parent
     const id = e.target.parentNode.parentNode.dataset.id
@@ -94,4 +98,23 @@ function buyTicket(id){
     })
     .then(response => response.json())
     .then(fetchFilms)
+}
+
+function cageifyButton(){
+
+    const theCageCage = document.createElement("div")
+    theCageCage.innerHTML = `<div class="ui red cage button">"Cage it UP"</div>`
+    document.body.appendChild(theCageCage)
+}
+
+function cageify(){
+  const titles = document.querySelectorAll(".header")
+  document.body.style.backgroundImage = "url('https://media1.giphy.com/media/14nMfF6eUeWayc/giphy.gif')"
+  titles.forEach(header => header.innerText = randomCageMasterpiece())
+}
+
+function randomCageMasterpiece(){
+  cageMasterpieces = ["Valley Girl", "Peggy Sue Got Married", "Raising Arizona", "National Treasure", "National Treasure 2: Book of Secrets", "Mandy", "Face/Off", "The Wicker Man", "Drive Angry", "Wild at Heart", "Vampire's Kiss", "Con Air", "Bad Lieutenant: Port of Call New Orleans", "Ghost Rider", "Adaptation.", "Leaving Las Vegas", "Matchstick Men", "The Rock", "Bangkok Dangerous", "Season of the Witch", "Knowing", "Left Behind", "Mom and Dad", "Mandy", "Spider-Man: Into the Spider-verse", "The Croods 2"]
+  const randomIndex = Math.floor(Math.random() * cageMasterpieces.length)
+  return cageMasterpieces[randomIndex]
 }
