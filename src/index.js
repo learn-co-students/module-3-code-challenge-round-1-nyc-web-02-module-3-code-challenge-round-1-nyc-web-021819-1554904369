@@ -3,14 +3,14 @@ const baseURL = "https://evening-plateau-54365.herokuapp.com"
 let allMovies
 let showings
 
+// Event Listeners
+
+// action that occurs when DOM is loaded
 document.addEventListener('DOMContentLoaded', function(){
     showings = document.getElementsByClassName("ui cards showings")[0]
     getAllMovies()
     buyTicket()
 })
-
-// Event Listeners
-
 // action that occurs when you buy a ticket
 function buyTicket() {
     showings.addEventListener('click', e => {
@@ -20,7 +20,7 @@ function buyTicket() {
             const movie = allMovies.find(function(movie){
                 return movie.id === parseInt(movieId)
             })
-            purchaseTicket(body).then(function() {
+            purchaseTicket(body).then(() => {
                 movie.tickets_sold += 1
                 addMoviesToDOM()
             })
@@ -63,7 +63,7 @@ function movieToHTML(movie) {
 // Add to Dom
 
 // adds movies to the dom
-function addMoviesToDOM(){
+function addMoviesToDOM() {
     showings.innerHTML = ''
     allMovies.forEach(function(movie){
         showings.innerHTML += movieToHTML(movie)
@@ -74,23 +74,14 @@ function addMoviesToDOM(){
 
 // gets all movies from db
 function getAllMovies() {
-    fetch(`${baseURL}/theatres/${theatreId}`)
-    .then(res => res.json())
-    .then(theater => {
-        allMovies = theater.showings
-        addMoviesToDOM()
-    })
+    movieApi.getAll()
+        .then(theater => {
+                allMovies = theater.showings
+                addMoviesToDOM()
+        })
 }
 
 // increases ticket sold by 1
-function purchaseTicket(body){
-    return fetch(`${baseURL}/tickets`, {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers:{
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-    })
-    .then(res => res.json())
+function purchaseTicket(body) {
+    return movieApi.buyTicket(body)
 }
