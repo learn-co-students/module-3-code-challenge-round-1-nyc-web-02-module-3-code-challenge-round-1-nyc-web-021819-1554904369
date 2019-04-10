@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //DOM variables
 
-let all_showings = []
-const showingsContainer = document.querySelector(".ui.cards.showings")
+  let all_showings = []
+  const showingsContainer = document.querySelector(".ui.cards.showings")
 
   fetch('https://evening-plateau-54365.herokuapp.com/theatres/41')
     .then(res => res.json())
@@ -65,13 +65,26 @@ const showingsContainer = document.querySelector(".ui.cards.showings")
     // tickets_sold: 14
   }
 
-
   //event listeners
+  // const decrease_tickets = function(res) {
+  //   showID = res.showing_id
+  //   ticketsremaining = document.querySelector(`[data-ticketsid='${showID}']`)
+  //
+  //   selected_show = all_showings.find(function(show) {
+  //     return show.id === showID
+  //   })
+  //
+  //   let tickets_sold = selected_show.tickets_sold
+  //   tickets_sold += 1
+  //   let remainingTickets = selected_show.capacity - tickets_sold
+  //
+  // }
 
   showingsContainer.addEventListener('click', function (e){
     console.log(e.target.parentElement)
 
     showID = parseInt(e.target.dataset.showid)
+
     ticketsremaining = document.querySelector(`[data-ticketsid='${showID}']`)
     ticketsremainingparsed = parseInt(ticketsremaining.innerText)
 
@@ -82,13 +95,16 @@ const showingsContainer = document.querySelector(".ui.cards.showings")
     }
 
     if (e.target.className === "ui blue button") {
+
       selected_show = all_showings.find(function(show) {
         return show.id === showID
       })
 
-      let tickets_sold =  selected_show.tickets_sold
-      tickets_sold ++
-      let remainingTickets = selected_show.capacity - tickets_sold
+      let tickets_sold = selected_show.tickets_sold
+      tickets_sold += 1
+      let remainingTickets = selected_show.capacity - selected_show.tickets_sold
+      remainingTickets -= 1
+
 
       fetch('https://evening-plateau-54365.herokuapp.com/tickets', {
         method: "POST",
@@ -102,17 +118,14 @@ const showingsContainer = document.querySelector(".ui.cards.showings")
     })
     .then(res => res.json())
     .then(function(){
+      // showingsContainer.innerHTML = ""
+      // render_all_showings(all_showings)
       ticketsremaining.innerText = remainingTickets
     })
 
     }
 
   })
-
-  // As a user, clicking on the 'Buy Ticket' button should purchase a ticket and decrement the remaining tickets by one. This information should be persisted in the remote API.
-
-
-
 
 
 }) //DOMContentLoaded close
